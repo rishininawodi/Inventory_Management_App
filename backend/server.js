@@ -4,7 +4,16 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const cors = require("cors");
 
-const app = express()
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(bodyparser.json());
+
+//Routes
+app.get("/", (req, res) => {
+    res.send("Home Page");
+});
 
 const PORT =process.env.PORT || 3000;
 
