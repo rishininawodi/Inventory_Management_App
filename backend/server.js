@@ -1,7 +1,7 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyparser = require("bodyparser");
+const bodyparser = require("body-parser");
 const cors = require("cors");
 
 const app = express()
@@ -14,9 +14,10 @@ mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(PORT,() =>{
-            console.log('sever Running on porrt ${PORT}')
+            console.log(`sever Running on porrt ${PORT}
+            `);
 
-        })    
+        });    
 
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
