@@ -1,4 +1,4 @@
-const errorHandler = (errr, rreq, res, next) => {
+const errorHandler = (err, req, res, next) => {
  
     const statusCode =res.statusCode ? res. 
     statusCode : 401
@@ -6,7 +6,7 @@ const errorHandler = (errr, rreq, res, next) => {
 
     res.json({
         message: err.message,
-        stack : process.env.NODE_ENVIRONMENT === "developing"
+        stack : process.env.NODE_ENV === "development"
         ? err.stack : null
     })
 };
