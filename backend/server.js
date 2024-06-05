@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
-//routes
+//routes middlewares
 app.use("/api/users" , userRoute); //localhost:/api/users/registers
 
 //Routes
@@ -22,7 +22,8 @@ app.get("/", (req, res) => {
 //Error Middle ware
 app.use(errorHandler);
 
-const PORT =process.env.PORT || 4000;
+const PORT =process.env.PORT || 5000;
+//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 //this part for to connct mongo DB and  start server
 

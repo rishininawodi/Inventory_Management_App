@@ -1,7 +1,7 @@
 const errorHandler = (err, req, res, next) => {
  
     const statusCode =res.statusCode ? res. 
-    statusCode : 401
+    statusCode : 500
     res.status(statusCode)
 
     res.json({
@@ -11,7 +11,7 @@ const errorHandler = (err, req, res, next) => {
     })
 };
 
-//exporting so that can be accessible from different points of our applications...
+/*exporting so that can be accessible from different points of our applications...*/
 
 module.exports = errorHandler;
 
