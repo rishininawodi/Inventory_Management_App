@@ -21,7 +21,11 @@ const userSchema = mongoose.Schema({
         type:String,
         required: [true, "Please add a Strong Password"],
         minLength: [8, "Password must be up to  8 characters"],
-        maxLength: [20, "password  must not be more than 20 characters"],
+
+        /*  i comment following maxx lenghth because when encryptpassword,
+        then password go more than 20.so i comment this*/
+
+       /* maxLength: [20, "password  must not be more than 20 characters"],*/
     },
     photo: {
         type:String,
