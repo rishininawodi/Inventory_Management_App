@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler")
 const User = require("../models/userModel");
-const bcrypt = require("bcryptjs");
+//const bcrypt = require("bcryptjs");
 
 const registerUser  = asyncHandler( async (req, res) => {
     
@@ -23,18 +23,20 @@ const registerUser  = asyncHandler( async (req, res) => {
         res.status(403);
         throw new Error("Your email has already been used")  ;
     }
-
+    /*
+     //commment this part because this part dont need this here.it in userbodel.js
     //hasj a pasword beforre you create new user
     //encrypt password before saving to DB
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await  bcrypt.hash(password , salt)
 
+    */
     //create new user
     const user = await User.create({
         name,
         email,
-        password: hashedPassword,//point to hashedpassword
+        password,   //this also no need it used in usermodel.js: hashedPassword,//point to hashedpassword
 
     });
     if (user){
