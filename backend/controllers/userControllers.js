@@ -1,6 +1,12 @@
 const asyncHandler = require("express-async-handler")
 const User = require("../models/userModel");
 //const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+//generate web token function
+const generateToken = (id) => {
+    return jwt.sign({id} , process.env.JWT_SECRET , {expiresIn:"1d"}) //expire mean id will expire on 1 day
+};
 
 const registerUser  = asyncHandler( async (req, res) => {
     
@@ -32,6 +38,7 @@ const registerUser  = asyncHandler( async (req, res) => {
     const hashedPassword = await  bcrypt.hash(password , salt)
 
     */
+    
     //create new user
     const user = await User.create({
         name,
@@ -39,10 +46,15 @@ const registerUser  = asyncHandler( async (req, res) => {
         password,   //this also no need it used in usermodel.js: hashedPassword,//point to hashedpassword
 
     });
+
+    //generate token
+    const token= generateToken(user._id)
+
+
     if (user){
         const {_id,name,email,photo,phone,bio}= user;
         res.status(201).json({
-            _id,name,email,photo,phone,bio
+            _id,name,email,photo,phone,bio,token,
            
         });
     }
