@@ -13,6 +13,16 @@ so tht in sign in part we going togenerate web token and going to use it to veri
 first install : jason web token..
 type in terminal..: npm i jsonwetoken 
 
+
+3)how can use the generated token to log the user applicatio.
+//loging mean sending that token to our front end or to our client which is the browser and that is going to tell front end that look this user has been properly authenticated.....Then can access backend.....
+
+to install cokeis package === "npm i install cookie-parser
+
+following link is about cookie web site
+https://www.tutorialspoint.com/res-cookie-method-in-express-js
+
+
   
 
 
