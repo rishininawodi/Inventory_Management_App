@@ -8,6 +8,8 @@ const generateToken = (id) => {
     return jwt.sign({id} , process.env.JWT_SECRET , {expiresIn:"1d"}) //expire mean id will expire on 1 day
 };
 
+//Register user
+
 const registerUser  = asyncHandler( async (req, res) => {
     
      
@@ -76,7 +78,13 @@ const registerUser  = asyncHandler( async (req, res) => {
     
 });
 
+//Logging User
+const logingUser =asyncHandler(async(req, res)=> {
+    res.send("Login User");
+});
+
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
 module.exports = {
     registerUser,
+    logingUser,
 };
