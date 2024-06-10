@@ -99,7 +99,7 @@ const logingUser =asyncHandler(async(req, res)=> {
     }
     //User exists, check if password is correct
     const passwordIsCorrect = await bcrypt.compare(password,user.password)
-    //generate token fot front end
+    //generate token fot front endCreate 
     const token= generateToken(user._id);
     //send HTTP -only cookie for client
     res.cookie("token", token, {
@@ -131,8 +131,24 @@ const logingUser =asyncHandler(async(req, res)=> {
 
 });
 
+//lout User
+const logout = asyncHandler(async(req,res) => {
+    res.cookie("token", "", {
+        path: "/",  //path were cookie wiil be stored
+        httpOnly: true, //boolean parameter flags the cookie to be only used by the web server
+        expires: new Date(0), //1 day equation
+        
+        //folowing two execute only deploye.
+        sameSite: "none",
+        secure:true  //this  marks the cookie to be used only with https
+    });
+    return res.status(200).json({message: "Successfully logout"});
+});
+
+
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
 module.exports = {
     registerUser,
     logingUser,
+    logout,
 };
