@@ -1,4 +1,4 @@
-<h1>Stock Master(Inventory Management App)</h1>
+<h1>Welcome To Stock Master(Inventory Management App)</h1>
 
 <h2>How To Get This source code:</h2>
 <ul>
