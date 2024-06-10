@@ -145,10 +145,16 @@ const logout = asyncHandler(async(req,res) => {
     return res.status(200).json({message: "Successfully logout"});
 });
 
+//Get user data
+const getUser = asyncHandler( async(req,res)=>{
+    res.send("Get User Data");
+});
+
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
 module.exports = {
     registerUser,
     logingUser,
     logout,
+    getUser,
 };
