@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const protect =asyncHandler(async(req,res) =>{
     try{
-        const token = req.cookies.token
+        const token = req.cookies.token;
         if(!token){
             res.status(401)
             throw new Error("Not autharized,please loggin");
@@ -19,8 +19,8 @@ const protect =asyncHandler(async(req,res) =>{
             res.status(401)
             throw new Error("User not found");
         }
-        req.user = user 
-        next()
+        req.user = user ;
+        next();
     }
     catch(error){
         res.status(410)
@@ -29,4 +29,4 @@ const protect =asyncHandler(async(req,res) =>{
 
 
 });
-module.exports = protect
+module.exports = protect;

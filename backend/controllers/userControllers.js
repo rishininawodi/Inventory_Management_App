@@ -165,7 +165,19 @@ const getUser = asyncHandler( async(req,res)=>{
 
 //Getting login status
 const loginStatus = asyncHandler(async(req,res)=> {
-    res.send("Loging Status");
+    
+    const  token =req.cookies.token;
+    if(!token){
+        return res.json(false)//if user is loggedout then logged in status is false..
+    }
+
+    //verify token
+    const verified = jwt.verify(token,process.env.JWT_SECRET);
+    if(verified){
+        return res.json(true)//if user is logged in then logged in status is true..
+    }
+    return res.json(false);
+
 });
 
 
