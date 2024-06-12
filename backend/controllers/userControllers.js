@@ -131,7 +131,7 @@ const logingUser =asyncHandler(async(req, res)=> {
 
 });
 
-//lout User
+//logoutt User
 const logout = asyncHandler(async(req,res) => {
     res.cookie("token", "", {
         path: "/",  //path were cookie wiil be stored
@@ -180,6 +180,11 @@ const loginStatus = asyncHandler(async(req,res)=> {
 
 });
 
+//update User
+const updateUser =asyncHandler(async(req,res)=>{
+    res.send("User update");
+})
+
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
 module.exports = {
@@ -188,5 +193,6 @@ module.exports = {
     logout,
     getUser,
     loginStatus,
+    updateUser,
     
 };
