@@ -163,6 +163,11 @@ const getUser = asyncHandler( async(req,res)=>{
     
 });
 
+//Getting login status
+const loginStatus = asyncHandler(async(req,res)=> {
+    res.send("Loging Status");
+});
+
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
 module.exports = {
@@ -170,5 +175,6 @@ module.exports = {
     logingUser,
     logout,
     getUser,
+    loginStatus,
     
 };
