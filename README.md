@@ -28,5 +28,7 @@
   <li>on terminal "npm run backend"</li>
 </ul>
 
-<h2>This is my Project Praposal</h2>
-[2019ICTS94 praposal.pdf](https://github.com/user-attachments/files/15889687/2019ICTS94.praposal.pdf)
+<h2>This is my Project Features UseCase Diagram.</h2>
+
+![Use_Case_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/24e0ad5f-a1cc-4d48-aed7-355e3622935c)
+
