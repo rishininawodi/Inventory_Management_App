@@ -27,3 +27,6 @@
   <li>Get node modules</li>
   <li>on terminal "npm run backend"</li>
 </ul>
+
+<h2>This is my Project Praposal</h2>
+[2019ICTS94 praposal.pdf](https://github.com/user-attachments/files/15889687/2019ICTS94.praposal.pdf)
