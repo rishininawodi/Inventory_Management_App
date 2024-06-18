@@ -28,11 +28,16 @@
   <li>on terminal "npm run backend"</li>
 </ul>
 
-<h2>This is my Project Features UseCase Diagram.</h2>
+<h2>This is  Project Features UseCase Diagram.</h2>
 
 ![Use_Case_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/24e0ad5f-a1cc-4d48-aed7-355e3622935c)
 
-<h2>This is my Project Features Class Diagram.</h2>
+<h2>This is Project Features Class Diagram.</h2>
 
 ![Class_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/8e476990-e84c-4291-9335-86c7b0870da0)
+
+<h2>This is Project Activity Diagram.</h2>
+
+![activity_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/2faabb91-f035-4269-a7ef-0fd8afcdce45)
+
 
