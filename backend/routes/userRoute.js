@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser, logingUser ,logout,getUser, loginStatus, updateUser, } = require("../controllers/userControllers");//by cntrl+space bar 
+const { registerUser, logingUser ,logout,getUser, loginStatus, updateUser, changePassword, } = require("../controllers/userControllers");//by cntrl+space bar 
 const router = express.Router();
 const protect = require("../middleWare/authMiddleware");
 
@@ -12,8 +12,6 @@ router.post("/login",logingUser);
 router.get("/logout", logout);
 router.get("/getuser",protect, getUser); //get this user route acces to user information
 router.get("/loggedin", loginStatus);
-router.patch("/updateuser" ,protect,updateUser
-    
- );
+router.patch("/changepassword" ,protect,changePassword);
 
 module.exports = router;

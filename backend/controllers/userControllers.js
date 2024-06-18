@@ -208,6 +208,9 @@ const updateUser =asyncHandler(async(req,res)=>{
         throw new Error("User not Found");
     }
 });
+const changePassword =asyncHandler(async(req,res) => {
+    res.send("password changed");
+});
 
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
@@ -218,5 +221,6 @@ module.exports = {
     getUser,
     loginStatus,
     updateUser,
+    changePassword,
     
 };
