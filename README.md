@@ -32,3 +32,5 @@
 
 ![Use_Case_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/24e0ad5f-a1cc-4d48-aed7-355e3622935c)
 
+<h2>This is my Project Features Class Diagram.</h2>
+
