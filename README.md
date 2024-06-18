@@ -34,3 +34,5 @@
 
 <h2>This is my Project Features Class Diagram.</h2>
 
+![Class_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/8e476990-e84c-4291-9335-86c7b0870da0)
+
