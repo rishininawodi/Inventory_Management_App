@@ -46,4 +46,6 @@
 
 <h2>Sequence Diagram.</h2>
 
+![Sequence_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/31653fed-9807-4f23-b71b-0275863811a0)
+
 
