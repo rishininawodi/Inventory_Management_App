@@ -40,4 +40,10 @@
 
 ![activity_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/2faabb91-f035-4269-a7ef-0fd8afcdce45)
 
+<h2>Entity Relationship Diagram.</h2>
+
+![ER](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/3921f086-1047-456b-b256-87bea29928ea)
+
+<h2>Sequence Diagram.</h2>
+
 
