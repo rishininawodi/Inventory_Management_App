@@ -4,6 +4,8 @@
 
 <p><b>You can Check Project Praposal</b></p>
 
+[praposal.pdf](https://github.com/user-attachments/files/15903549/praposal.pdf)
+
 <h2>Features</h2>
 <ul>
   <li>login : User can log in using their email and password.</li>
