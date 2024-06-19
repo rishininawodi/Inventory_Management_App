@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 
 //generate web token function
 const generateToken = (id) => {
-    return jwt.sign({id} , process.env.JWT_SECRET , {expiresIn:"1d"}) //expire mean id will expire on 1 day
+    return jwt.sign({id} , process.env.JWT_SECRET , {expiresIn:"5d"}) //expire mean id will expire on 1 day
 };
 
 //Register user
@@ -209,7 +209,36 @@ const updateUser =asyncHandler(async(req,res)=>{
     }
 });
 const changePassword =asyncHandler(async(req,res) => {
-    res.send("password changed");
+    const user = await User.findById(req.user._id);
+    const {oldPassword,password} = req.body;
+
+    if(!user){
+        res.status(404)
+        throw new Error("User not found please signup");   
+    }
+
+    
+    //validate
+    if(!oldPassword || !password){
+        res.status(404)
+        throw new Error("Please add old and new password");   
+    }
+    //check if  old password matches password in DB
+    const passswordIsCorrect = await bcrypt.compare(oldPassword,
+        user.password)
+    //save new password
+    if(user && passswordIsCorrect){
+        user.passswordIsCorrect = password
+        await user.save()
+        res.status(200).send("Password change successfull");
+
+    }
+    else{
+        res.status(400);
+
+        throw new Error("old password  is incorrect ");
+    }
+
 });
 
 

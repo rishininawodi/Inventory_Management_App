@@ -70,3 +70,4 @@ userSchema.pre("save" , async function(next){ //because next use whenever we exe
 
 const User = mongoose.model("User",userSchema)
 module.exports = User;
+
