@@ -2,6 +2,10 @@
 <h2>Overview</h2>
 <p>Welcome to the Inventory and Stock Management System! This application is designed to streamline the process of managing inventory efficiently, providing a user-friendly interface for adding, viewing, editing, and deleting inventory items. Users can also manage their accounts, report bugs, and, if they have admin privileges, manage other users.</p>
 
+<p><b>You Can Download or Check Project Praposal from here: </b></p>
+
+[praposal.pdf](https://github.com/user-attachments/files/15903549/praposal.pdf)
+
 <h2>Features</h2>
 <ul>
   <li>login : User can log in using their email and password.</li>
@@ -39,5 +43,13 @@
 <h2>This is Project Activity Diagram.</h2>
 
 ![activity_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/2faabb91-f035-4269-a7ef-0fd8afcdce45)
+
+<h2>Entity Relationship Diagram.</h2>
+
+![ER](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/3921f086-1047-456b-b256-87bea29928ea)
+
+<h2>Sequence Diagram.</h2>
+
+![Sequence_Diagram](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/31653fed-9807-4f23-b71b-0275863811a0)
 
 
