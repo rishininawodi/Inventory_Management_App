@@ -26,4 +26,11 @@ https://www.tutorialspoint.com/res-cookie-method-in-express-js
   
 
 
+  //forgot password steps
+  Create forgot password route
+  create token model
+  create email sender
+  create controller function
+
+
 

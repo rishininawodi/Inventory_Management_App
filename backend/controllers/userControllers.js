@@ -240,6 +240,10 @@ const changePassword =asyncHandler(async(req,res) => {
     }
 
 });
+//reset/forgotpassword
+const forgotPassword = asyncHandler(async(req,res) => {
+    res.send("reset");
+})
 
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
@@ -251,5 +255,6 @@ module.exports = {
     loginStatus,
     updateUser,
     changePassword,
+    forgotPassword,
     
 };
