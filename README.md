@@ -2,6 +2,8 @@
 <h2>Overview</h2>
 <p>Welcome to the Inventory and Stock Management System! This application is designed to streamline the process of managing inventory efficiently, providing a user-friendly interface for adding, viewing, editing, and deleting inventory items. Users can also manage their accounts, report bugs, and, if they have admin privileges, manage other users.</p>
 
+<h2>User Interface of system Login(Low fidelity"</h2>
+
 <p><b>You Can Download or Check Project Praposal from here: </b></p>
 
 [praposal.pdf](https://github.com/user-attachments/files/15903549/praposal.pdf)
