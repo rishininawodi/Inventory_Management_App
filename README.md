@@ -10,7 +10,8 @@
 
 <h2>User Interface of system Login and dashBoard(High fidelity)"</h2>
 
-![Profile](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/0b300d92-a65f-4d23-b9ff-9a117b9d1278)
+![loggin](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/7435073b-b35e-4db5-b447-8a761180deac)
+
 
 
 <p><b>You Can Download or Check Project Praposal from here: </b></p>
