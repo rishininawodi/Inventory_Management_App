@@ -6,6 +6,8 @@
 
 ![loggin](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/4a5139ae-0462-4805-bc11-c01226fecbcb)
 
+![dashboard](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/d8e7942c-ee5f-45a4-9c2c-ee36a0fbe712)
+
 <p><b>You Can Download or Check Project Praposal from here: </b></p>
 
 [praposal.pdf](https://github.com/user-attachments/files/15903549/praposal.pdf)
