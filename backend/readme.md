@@ -29,8 +29,10 @@ https://www.tutorialspoint.com/res-cookie-method-in-express-js
   //forgot password steps
   Create forgot password route
   create token model
-  create email sender
-  create controller function
+  #3...create email sender function ---->
+  install package : npm i nodemailer
+
+  #4...create controller function
 
 
 
