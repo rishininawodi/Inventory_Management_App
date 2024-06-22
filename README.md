@@ -2,15 +2,18 @@
 <h2>Overview</h2>
 <p>Welcome to the Inventory and Stock Management System! This application is designed to streamline the process of managing inventory efficiently, providing a user-friendly interface for adding, viewing, editing, and deleting inventory items. Users can also manage their accounts, report bugs, and, if they have admin privileges, manage other users.</p>
 
-<h2>User Interface of system Login and dashBoard(Low fidelity)"</h2>
+<h2>User Interface of system Login and dashBoard(Low fidelity)</h2>
 
 ![loggin](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/4a5139ae-0462-4805-bc11-c01226fecbcb)
 
 ![dashboard](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/d8e7942c-ee5f-45a4-9c2c-ee36a0fbe712)
 
-<h2>User Interface of system Login and dashBoard(High fidelity)"</h2>
+<h2>User Interface of system Login and dashBoard(High fidelity)</h2>
 
 ![loggin](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/7435073b-b35e-4db5-b447-8a761180deac)
+
+![dashboard](https://github.com/rishininawodi/Inventory_Management_App/assets/123630889/24eee0aa-bf00-412d-890c-a83177b08df5)
+
 
 
 
