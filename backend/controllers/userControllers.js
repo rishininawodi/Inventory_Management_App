@@ -3,6 +3,9 @@ const User = require("../models/userModel");
 //const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const Token = require("../models/tokenModel");
+const crypto =  require("crypto")
+
 
 //generate web token function
 const generateToken = (id) => {
@@ -238,11 +241,30 @@ const changePassword =asyncHandler(async(req,res) => {
 
         throw new Error("old password  is incorrect ");
     }
-
+    
 });
 //reset/forgotpassword
 const forgotPassword = asyncHandler(async(req,res) => {
-    res.send("reset");
+    const {email} = req.body
+    const user = await User.findOne({email})
+
+    if (!user) {
+        res.status(404)
+        throw new Error("User does not exist")
+    }
+    //create reset Token
+    let resetToken = crypto.randomBytes(32).toString("hex") +user._id//32 chharacters convert to string
+    
+    //hash token before saving to DB
+    const hashedToken = crypto
+    .createHash("sha2356")
+    .update(resetToken)
+    .digest("hex")
+    console.log(hashedToken);//loging to console
+
+
+    res.send("forgot password")
+
 })
 
 
