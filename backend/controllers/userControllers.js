@@ -4,7 +4,8 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Token = require("../models/tokenModel");
-const crypto =  require("crypto")
+const crypto =  require("crypto");
+const { create } = require("domain");
 
 
 //generate web token function
@@ -259,8 +260,21 @@ const forgotPassword = asyncHandler(async(req,res) => {
     const hashedToken = crypto
     .createHash("sha2356")
     .update(resetToken)
-    .digest("hex")
-    console.log(hashedToken);//loging to console
+    .digest("hex");
+
+
+    //loging to console
+    //save token to db
+    await new Token ({
+        userId :user._id,
+        token :hashedToken,
+        createAt: Date.now(),
+        expiresAt:Date.now() + 30 *(60*1000)//thirty minuit
+
+    }).save()
+
+    //construvt reset url
+    
 
 
     res.send("forgot password")
