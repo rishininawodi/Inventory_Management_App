@@ -259,6 +259,8 @@ const forgotPassword = asyncHandler(async(req,res) => {
         await token.deleteOne()
     }
 
+    //email not deliverd part checking...
+
 
     //create reset Token
     let resetToken = crypto.randomBytes(32).toString("hex") +user._id//32 chharacters convert to string
