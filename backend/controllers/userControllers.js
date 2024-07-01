@@ -253,6 +253,13 @@ const forgotPassword = asyncHandler(async(req,res) => {
         res.status(404)
         throw new Error("User does not exist")
     }
+    //delete token if it exst in DB
+    let token = await  Token.findOne({userId:user._id})
+    if(token){
+        await token.deleteOne()
+    }
+
+
     //create reset Token
     let resetToken = crypto.randomBytes(32).toString("hex") +user._id//32 chharacters convert to string
     
@@ -268,7 +275,7 @@ const forgotPassword = asyncHandler(async(req,res) => {
     await new Token ({
         userId :user._id,
         token :hashedToken,
-        createAt: Date.now(),
+        createdAt: Date.now(),
         expiresAt:Date.now() + 30 *(60*1000)//thirty minuit
 
     }).save()
@@ -287,14 +294,23 @@ const forgotPassword = asyncHandler(async(req,res) => {
         <p>Regard ...</p>
         <p>StockMaster  Team</p>
 
-        `
+        `;
+        const subject = "Password Reset Request"
+        const send_to = user.email
+        const sent_from  = process.env.EMAIL_USER
 
-
-
-
-    res.send("forgot password")
-
-})
+        try{
+            await sendEmail(subject,message,send_to,
+                sent_from)
+                res.status(200).json({success:true,message:
+                    "Reset Email Sent"
+                });  
+        }
+        catch (error) {
+            res.status(500);
+            throw new Error("Email not sent,please try again");
+        }
+});
 
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
