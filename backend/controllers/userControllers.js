@@ -313,6 +313,10 @@ const forgotPassword = asyncHandler(async(req,res) => {
             throw new Error("Email not sent,please try again");
         }
 });
+//reset password
+const resetPassword = asyncHandler(async(req,res) => {
+    res.send("reset password");
+});
 
 
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
@@ -325,5 +329,6 @@ module.exports = {
     updateUser,
     changePassword,
     forgotPassword,
+    resetPassword,
     
 };
