@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const Token = require("../models/tokenModel");
 const crypto =  require("crypto");
 const { create } = require("domain");
+const { log } = require("console");
 
 
 //generate web token function
@@ -315,7 +316,32 @@ const forgotPassword = asyncHandler(async(req,res) => {
 });
 //reset password
 const resetPassword = asyncHandler(async(req,res) => {
-    res.send("reset password");
+    const {password}=req.body
+    const{resetToken}= req.params
+
+    //hash token ,then compare to token in DB    const hashedToken = crypto
+    .createHash("sha2356")
+    .update(resetToken)
+    .digest("hex");
+    
+    //find token in db
+    const userToken = await Token.findOne({
+        token:hashedToken,
+        expiresAt: {$gt: Date.now()}
+    })
+
+    if(!userToken){
+        res.status(404);
+        throw new Error("Invalid or Expired Token");
+    }
+    //Find user
+    const user = await User.findOne({_id: userToken.userId})
+    user.password = password//set user password
+    await user.save()
+    res.status(200).jason({
+        message:" Reset Successfull pleaseoggin",
+    });
+
 });
 
 
