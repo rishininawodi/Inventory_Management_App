@@ -11,16 +11,16 @@ const tokenSchema = mongoose.Schema({
         required : true,
     },
     createdAt: {
-        type: String,
+        type: Date,
         required : true,
     },
     expiresAt: {
-        type: String,
+        type: Date,
         required : true,
     },
 
 });
 
-const Token = mongoose.model("Token" , tokenSchema)
+const Token = mongoose.model("Token" , tokenSchema);
 
 module.exports = Token;

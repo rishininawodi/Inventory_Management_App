@@ -1,4 +1,4 @@
-const asyncHandler = require("express-async-handler")
+const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 //const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -11,35 +11,33 @@ const { log } = require("console");
 
 //generate web token function
 const generateToken = (id) => {
-    return jwt.sign({id} , process.env.JWT_SECRET , {expiresIn:"5d"}) //expire mean id will expire on 1 day
+    return jwt.sign({id} , process.env.JWT_SECRET , {expiresIn:"1d"}) //expire mean id will expire on 1 day
 };
 
 //Register user
 
-const registerUser  = asyncHandler( async (req, res) => {
-    
-     
+const registerUser  = asyncHandler( async (req, res) => { 
     const {name , email,password} =req.body;
 
     //validation
     if(!name || !email || !password){
-        res.status(401);
+        res.status(400);
         throw new Error("Please fill in all required fields");
     }
-    if(password.length < 7){
-        res.status(402);
+    if(password.length < 6){
+        res.status(400);
         throw new Error("passsword must e in 7 characters") ; 
     }
     //check if user email already exit
     const userExists = await User.findOne({email});
 
     if(userExists) {
-        res.status(403);
-        throw new Error("Your email has already been used")  ;
+        res.status(400);
+        throw new Error("Your email has already been used") ;
     }
     /*
      //commment this part because this part dont need this here.it in userbodel.js
-    //hasj a pasword beforre you create new user
+    //hash a pasword beforre you create new user
     //encrypt password before saving to DB
 
     const salt = await bcrypt.genSalt(10);
@@ -78,14 +76,14 @@ const registerUser  = asyncHandler( async (req, res) => {
         });
     }
     else{
-        res.status(401);
+        res.status(400);
         throw new Error("Invalid User data");
     }
     
 });
 
 //Logging User
-const logingUser =asyncHandler(async(req, res)=> {
+const loginUser =asyncHandler(async(req, res)=> {
     const {email,password} = req.body;
 
     //validation 
@@ -106,6 +104,7 @@ const logingUser =asyncHandler(async(req, res)=> {
     const passwordIsCorrect = await bcrypt.compare(password,user.password)
     //generate token fot front endCreate 
     const token= generateToken(user._id);
+    if(passwordIsCorrect){ 
     //send HTTP -only cookie for client
     res.cookie("token", token, {
         path: "/",  //path were cookie wiil be stored
@@ -116,21 +115,21 @@ const logingUser =asyncHandler(async(req, res)=> {
         sameSite: "none",
         secure:true  //this  marks the cookie to be used only with https
     });
-
+    }
 
 
 
     //user information
     if(user && passwordIsCorrect){
         const {_id,name,email,photo,phone,bio}= user;
-        res.status(208).json({
+        res.status(200).json({
             _id,name,email,photo,phone,bio,token,
            
         });
 
     }
     else{
-        res.status(409);
+        res.status(400);
         throw new Error("Invalid email or password"); 
     }
 
@@ -152,17 +151,17 @@ const logout = asyncHandler(async(req,res) => {
 
 //Get user data
 const getUser = asyncHandler( async(req,res)=>{
-    const user = await User.findById(req.user._id)
+    const user = await User.findById(req.user._id);
 
     if (user){
-        const {_id,name,email,photo,phone,bio}= user;
+        const { _id, name, email, photo, phone, bio}= user;
         res.status(200).json({
             _id,name,email,photo,phone,bio,
            
         });
     }
     else{
-        res.status(401);
+        res.status(400);
         throw new Error("User not found");
     }
     
@@ -173,20 +172,20 @@ const loginStatus = asyncHandler(async(req,res)=> {
     
     const  token =req.cookies.token;
     if(!token){
-        return res.json(false)//if user is loggedout then logged in status is false..
+        return res.json(false);//if user is loggedout then logged in status is false..
     }
 
     //verify token
     const verified = jwt.verify(token,process.env.JWT_SECRET);
     if(verified){
-        return res.json(true)//if user is logged in then logged in status is true..
+        return res.json(true);//if user is logged in then logged in status is true..
     }
     return res.json(false);
 
 });
 
 //update User
-const updateUser =asyncHandler(async(req,res)=>{
+const updateUser =asyncHandler(async(req,res) => {
     const user = await User.findById(req.user._id);
 
     if(user) {
@@ -218,7 +217,7 @@ const changePassword =asyncHandler(async(req,res) => {
     const {oldPassword,password} = req.body;
 
     if(!user){
-        res.status(404)
+        res.status(400)
         throw new Error("User not found please signup");   
     }
 
@@ -229,12 +228,11 @@ const changePassword =asyncHandler(async(req,res) => {
         throw new Error("Please add old and new password");   
     }
     //check if  old password matches password in DB
-    const passswordIsCorrect = await bcrypt.compare(oldPassword,
-        user.password)
+    const passswordIsCorrect = await bcrypt.compare(oldPassword,user.password);
     //save new password
     if(user && passswordIsCorrect){
-        user.passswordIsCorrect = password
-        await user.save()
+        user.passsword = password;
+        await user.save();
         res.status(200).send("Password change successfull");
 
     }
@@ -247,17 +245,17 @@ const changePassword =asyncHandler(async(req,res) => {
 });
 //reset/forgotpassword
 const forgotPassword = asyncHandler(async(req,res) => {
-    const {email} = req.body
-    const user = await User.findOne({email})
+    const {email} = req.body;
+    const user = await User.findOne({email});
 
     if (!user) {
         res.status(404)
         throw new Error("User does not exist")
     }
     //delete token if it exst in DB
-    let token = await  Token.findOne({userId:user._id})
+    let token = await  Token.findOne({userId:user._id});
     if(token){
-        await token.deleteOne()
+        await token.deleteOne();
     }
 
     //email not deliverd part checking...
@@ -266,6 +264,7 @@ const forgotPassword = asyncHandler(async(req,res) => {
     //create reset Token
     let resetToken = crypto.randomBytes(32).toString("hex") +user._id//32 chharacters convert to string
     console.log(resetToken);
+
     //hash token before saving to DB
     const hashedToken = crypto
     .createHash("sha2356")
@@ -279,13 +278,12 @@ const forgotPassword = asyncHandler(async(req,res) => {
         userId :user._id,
         token :hashedToken,
         createdAt: Date.now(),
-        expiresAt:Date.now() + 30 *(60*1000)//thirty minuit
+        expiresAt:Date.now() + 30 *(60*1000),//thirty minuit
 
-    }).save()
+    }).save();
 
     //construvt reset url
-    const resetUrl = `${process.env.FRONTEND_URL}/
-    resetpassword/${resetToken}`
+    const resetUrl = `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`;
 
     //Reset Email
     const message = `
@@ -298,16 +296,14 @@ const forgotPassword = asyncHandler(async(req,res) => {
         <p>StockMaster  Team</p>
 
         `;
-        const subject = "Password Reset Request"
-        const send_to = user.email
-        const sent_from  = process.env.EMAIL_USER
+        const subject = "Password Reset Request";
+        const send_to = user.email;
+        const sent_from  = process.env.EMAIL_USER;
 
         try{
-            await sendEmail(subject,message,send_to,
-                sent_from)
-                res.status(200).json({success:true,message:
-                    "Reset Email Sent"
-                });  
+            await sendEmail(subject,message,send_to,sent_from);
+            res.status(200).json({success:true,message:"Reset Email Sent"
+        });  
         }
         catch (error) {
             res.status(500);
@@ -316,10 +312,11 @@ const forgotPassword = asyncHandler(async(req,res) => {
 });
 //reset password
 const resetPassword = asyncHandler(async(req,res) => {
-    const {password}=req.body
-    const{resetToken}= req.params
+    const {password}=req.body;
+    const{resetToken}= req.params;
 
     //hash token ,then compare to token in DB    const hashedToken = crypto
+    const hashedToken = crypto
     .createHash("sha2356")
     .update(resetToken)
     .digest("hex");
@@ -327,17 +324,17 @@ const resetPassword = asyncHandler(async(req,res) => {
     //find token in db
     const userToken = await Token.findOne({
         token:hashedToken,
-        expiresAt: {$gt: Date.now()}
-    })
+        expiresAt: {$gt: Date.now()},
+    });
 
     if(!userToken){
         res.status(404);
         throw new Error("Invalid or Expired Token");
     }
     //Find user
-    const user = await User.findOne({_id: userToken.userId})
-    user.password = password//set user password
-    await user.save()
+    const user = await User.findOne({ _id: userToken.userId});
+    user.password = password;//set user password
+    await user.save();
     res.status(200).jason({
         message:" Reset Successfull pleaseoggin",
     });
@@ -348,7 +345,7 @@ const resetPassword = asyncHandler(async(req,res) => {
 //this .js file has several controller functions.So exports module as an objects tha will have many  properties
 module.exports = {
     registerUser,
-    logingUser,
+    loginUser,
     logout,
     getUser,
     loginStatus,

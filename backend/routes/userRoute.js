@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser, logingUser ,logout,getUser, loginStatus, updateUser, changePassword, forgotPassword, resetPassword, } = require("../controllers/userControllers");//by cntrl+space bar 
+const { registerUser, loginUser ,logout,getUser, loginStatus, updateUser, changePassword, forgotPassword, resetPassword, } = require("../controllers/userControllers");//by cntrl+space bar 
 const router = express.Router();
 const protect = require("../middleWare/authMiddleware");
 
@@ -8,7 +8,7 @@ const protect = require("../middleWare/authMiddleware");
 //const registerUser = () => {};//normally this put in userController 
 
 router.post("/register",registerUser);
-router.post("/login",logingUser);
+router.post("/login",loginUser);
 router.get("/logout", logout);
 router.get("/getuser",protect, getUser); //get this user route acces to user information
 router.get("/loggedin", loginStatus);

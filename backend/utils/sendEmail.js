@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 //create email transporter
-const sendEmail = async(subject,message,send_to,send_from,reply_to) => {
+const sendEmail = async(subject,message,send_to, sent_from,reply_to) => {
         const transporter = nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
             port:587,
@@ -9,25 +9,27 @@ const sendEmail = async(subject,message,send_to,send_from,reply_to) => {
                 pass:process.env.EMAIL_PASS,
             },
             tls: {
-                rejectUnauthorized: false  //to mitigate any issues
-            }
+                rejectUnauthorized: false,  //to mitigate any issues
+            },
         });
 //options for sending emails
         const options ={
             from : sent_from,
             to : send_to,
-            replyId : reply_to,
-            fsubject  : subject,
+            replyTo : reply_to,
+            subject  : subject,
             html : message,
         }
         //send email
-        transporter.sendMail(option,function(err,info){
+        transporter.sendMail(options,function(err,info){
             if(err){
-                console.log (err)
+                console.log (err);
             }
-            console.log(info)
-        })
+            else{ 
+            console.log(info);
+            }
+        });
 };
 
-module.exports = sendEmail
+module.exports = sendEmail;
 

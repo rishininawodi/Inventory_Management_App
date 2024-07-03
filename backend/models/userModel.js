@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     //specify schema properties
     name: {
         type: String,
-        required: [true, "Please  add a name"]
+        required: [true, "Please  add a name"],
     },
     email: {
         type: String,
@@ -15,13 +15,13 @@ const userSchema = mongoose.Schema({
         match: [
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             "Please enter valid email"
-        ]
+        ],
 
     },
     password: {
         type:String,
         required: [true, "Please add a Strong Password"],
-        minLength: [8, "Password must be up to  8 characters"],
+        minLength: [6, "Password must be up to  8 characters"],
 
         /*  i comment following maxx lenghth because when encryptpassword,
         then password go more than 20.so i comment this*/
@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({
         type:String,
         required: [true, "please add a profile poto"],
         //not compulsary add a poto.there fore put default
-        default: "https://i.ibb.co/4pDNDk1/avatar.png"
+        default: "https://i.ibb.co/4pDNDk1/avatar.png",
     },
 
     phone: {
@@ -42,11 +42,11 @@ const userSchema = mongoose.Schema({
     bio: {
         type: String,
         default: "bio",
-        maxLength: [400, "Bio must not over than 400 words"]
-    }
+        maxLength: [250, "Bio must not over than 400 words"],
+    },
 }, 
 {
-    timestamps : true
+    timestamps : true,
 
 });
 
@@ -68,6 +68,6 @@ userSchema.pre("save" , async function(next){ //because next use whenever we exe
 
 })
 
-const User = mongoose.model("User",userSchema)
+const User = mongoose.model("User",userSchema);
 module.exports = User;
 
