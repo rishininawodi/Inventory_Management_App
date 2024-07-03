@@ -156,7 +156,12 @@ const getUser = asyncHandler( async(req,res)=>{
     if (user){
         const { _id, name, email, photo, phone, bio}= user;
         res.status(200).json({
-            _id,name,email,photo,phone,bio,
+            _id,
+            name,
+            email,
+            photo,
+            phone,
+            bio,
            
         });
     }

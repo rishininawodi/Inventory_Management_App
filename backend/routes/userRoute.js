@@ -12,7 +12,7 @@ router.post("/login",loginUser);
 router.get("/logout", logout);
 router.get("/getuser",protect, getUser); //get this user route acces to user information
 router.get("/loggedin", loginStatus);
-router.patch("/updateuser" , protect,updateUser);
+router.patch("/updateuser", protect,updateUser);
 router.patch("/changepassword" ,protect,changePassword);
 router.post("/forgotpasword" , forgotPassword);
 router.put("/resetpassword/:resetToken" , resetPassword);

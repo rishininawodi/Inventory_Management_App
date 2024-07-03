@@ -24,7 +24,7 @@ const protect =asyncHandler(async(req,res,next) =>{
         }
         catch(error){
         res.status(401);
-            throw new Error("Not authorized please logging");
+        throw new Error("Not authorized please logging");
     }
 
 
