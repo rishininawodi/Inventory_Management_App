@@ -323,9 +323,9 @@ const resetPassword = asyncHandler(async(req,res) => {
 
     //hash token ,then compare to token in DB    const hashedToken = crypto
     const hashedToken = crypto
-    .createHash("sha2356")
+    .createHash('sha256')
     .update(resetToken)
-    .digest("hex");
+    .digest('hex');
     
     //find token in db
     const userToken = await Token.findOne({
@@ -341,8 +341,8 @@ const resetPassword = asyncHandler(async(req,res) => {
     const user = await User.findOne({ _id: userToken.userId});
     user.password = password;//set user password
     await user.save();
-    res.status(200).jason({
-        message:" Reset Successfull pleaseoggin",
+    res.status(200).json({
+        message: "Reset Successfull please loggin",
     });
 
 });
