@@ -229,7 +229,7 @@ const changePassword =asyncHandler(async(req,res) => {
     
     //validate
     if(!oldPassword || !password){
-        res.status(404)
+        res.status(400 )
         throw new Error("Please add old and new password");   
     }
     //check if  old password matches password in DB
@@ -250,8 +250,8 @@ const changePassword =asyncHandler(async(req,res) => {
 });
 //reset/forgotpassword
 const forgotPassword = asyncHandler(async(req,res) => {
-    const {email} = req.body;
-    const user = await User.findOne({email});
+    const { email } = req.body;
+    const user = await User.findOne({ email });
 
     if (!user) {
         res.status(404)
@@ -267,7 +267,7 @@ const forgotPassword = asyncHandler(async(req,res) => {
 
 
     //create reset Token
-    let resetToken = crypto.randomBytes(32).toString("hex") +user._id//32 chharacters convert to string
+    let resetToken = crypto.randomBytes(32).toString("hex") + user._id;//32 chharacters convert to string
     console.log(resetToken);
 
     //hash token before saving to DB
@@ -295,7 +295,7 @@ const forgotPassword = asyncHandler(async(req,res) => {
         <h2>Hello ${user.name}</h2>
         <p>Please use the url below to reset your password</p>
         <p>This reset link is valid  for only 30 minuits.</p>
-        <a href=${resetUrl}clicktracking=off>${resetUrl}</a>
+        <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
 
         <p>Regard ...</p>
         <p>StockMaster  Team</p>

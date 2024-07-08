@@ -14,7 +14,7 @@ router.get("/getuser",protect, getUser); //get this user route acces to user inf
 router.get("/loggedin", loginStatus);
 router.patch("/updateuser", protect,updateUser);
 router.patch("/changepassword" ,protect,changePassword);
-router.post("/forgotpasword" , forgotPassword);
+router.post("/forgotpassword" , forgotPassword);
 router.put("/resetpassword/:resetToken" , resetPassword);
 
 module.exports = router;
