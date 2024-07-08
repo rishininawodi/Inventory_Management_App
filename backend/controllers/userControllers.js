@@ -7,6 +7,7 @@ const Token = require("../models/tokenModel");
 const crypto =  require("crypto");
 const { create } = require("domain");
 const { log } = require("console");
+const sendEmail = require("../utils/sendEmail");
 
 
 //generate web token function
@@ -272,9 +273,9 @@ const forgotPassword = asyncHandler(async(req,res) => {
 
     //hash token before saving to DB
     const hashedToken = crypto
-    .createHash("sha2356")
+    .createHash('sha256')
     .update(resetToken)
-    .digest("hex");
+    .digest('hex');
 
 
     //loging to console

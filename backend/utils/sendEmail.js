@@ -9,7 +9,7 @@ const sendEmail = async(subject,message,send_to, sent_from,reply_to) => {
                 pass:process.env.EMAIL_PASS,
             },
             tls: {
-                rejectUnauthorized: false  //to mitigate any issues
+                rejectUnauthorized: false,  //to mitigate any issues
             },
         });
 //options for sending emails
@@ -23,10 +23,11 @@ const sendEmail = async(subject,message,send_to, sent_from,reply_to) => {
         //send email
         transporter.sendMail(options,function(err,info){
             if(err){
-                console.log(err);
+                console.error("Error sending email:", err);
+                throw new Error("Email not sent, please try again");
             }
             else{ 
-            console.log(info);
+                console.log("Email sent:", info.response);
             }
         });
 };
