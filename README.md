@@ -1,1 +1,1 @@
-<h1>Welcome to Inventory </h1>
+<h1>Welcome to Inventory Management System </h1>
