@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ChangePassword.scss";
+import styles from "./ChangePassword.scss";
 import { toast } from "react-toastify";
 import { changePassword } from "../../services/authService";
 import Card from "../card/Card";
