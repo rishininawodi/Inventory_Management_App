@@ -6,6 +6,9 @@ const cors = require("cors");
 const userRoute  = require("./routes/userRoute");
 const errorHandler = require("./middleWare/errorMiddleware");
 const cookieParser = require("cookie-parser");
+const productRoute = require("./routes/productRoute");
+const contactRoute = require("./routes/contactRoute");
+const path = require("path");
 
 const app = express();
 
@@ -16,14 +19,15 @@ app.use(bodyparser.json());
 
 app.use(
     cors({
-        origin:["http://localhost:3000"],
-        Credentials : true,
+        origin: ["http://localhost:3000"],
+        credentials : true,
     })
 );
 
 //routes middlewares
 app.use("/api/users" , userRoute); //localhost:/api/users/registers
-
+app.use("/api/products", productRoute);
+app.use("/api/contactus", contactRoute);
 //Routes
 app.get("/", (req, res) => {
     res.send("Home Page");
