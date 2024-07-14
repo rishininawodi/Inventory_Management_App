@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import styles from "./ChangePassword.scss";
+import "./ChangePassword.scss";
 import { toast } from "react-toastify";
 import { changePassword } from "../../services/authService";
 import Card from "../card/Card";
 import { useNavigate } from "react-router-dom";
+
 
 const initialState = {
   oldPassword: "",

@@ -32,11 +32,13 @@ const ProductDetail = () => {
       dispatch(getProduct(id));
     }
 
+  }, [isLoggedIn, id, dispatch]);
+
+     useEffect(() => {
     if (isError) {
       console.log(message);
     }
-  }, [isLoggedIn, isError, message, dispatch]);
-
+  }, [isError, message]);
   return (
     <div className="product-detail">
       <h3 className="--mt">Product Detail</h3>
@@ -84,11 +86,12 @@ const ProductDetail = () => {
             ></div>
             <hr />
             <code className="--color-dark">
-              Created on: {product.createdAt.toLocaleString("en-US")}
+            Created on: {new Date(product.createdAt).toLocaleString("en-US")}
+              
             </code>
             <br />
             <code className="--color-dark">
-              Last Updated: {product.updatedAt.toLocaleString("en-US")}
+            Last Updated: {new Date(product.updatedAt).toLocaleString("en-US")}
             </code>
           </div>
         )}
