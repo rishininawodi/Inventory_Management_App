@@ -25,6 +25,11 @@ const ProductList = ({ products, isLoading }) => {
   const dispatch = useDispatch();
 
   const shortenText = (text, n) => {
+    if (typeof text !== 'string') {
+      return '';
+    }
+    
+
     if (text.length > n) {
       const shortenedText = text.substring(0, n).concat("...");
       return shortenedText;

@@ -8,7 +8,7 @@ const createProduct = asyncHandler(async (req, res) => {
   const { name, sku, category, quantity, price, description } = req.body;
 
   //   Validation
-  if (!name || !category || !quantity || !price || !description) {
+  if (!name || !sku || !category || !quantity || !price || !description) {
     res.status(400);
     throw new Error("Please fill in all fields");
   }

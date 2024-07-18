@@ -23,6 +23,7 @@ app.use(
         credentials : true,
     })
 );
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //routes middlewares
 app.use("/api/users" , userRoute); //localhost:/api/users/registers
@@ -44,10 +45,10 @@ mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(PORT,() =>{
-            console.log(`sever Running on porrt ${PORT}
+            console.log(`sever Running on port ${PORT}
             `);
 
-        });    
+        });
 
     })
     .catch((err) => console.log(err));

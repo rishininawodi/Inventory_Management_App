@@ -18,7 +18,7 @@ export const registerUser = async (userData) => {
       userData,
       { withCredentials: true }
     );
-    if (response.statusText === "OK") {
+    if (response.status === "OK") {
       toast.success("User Registered successfully");
     }
     return response.data;
@@ -38,7 +38,7 @@ export const loginUser = async (userData) => {
       `${BACKEND_URL}/api/users/login`,
       userData
     );
-    if (response.statusText === "OK") {
+    if (response.status === "OK") {
       toast.success("Login Successful...");
     }
     return response.data;
