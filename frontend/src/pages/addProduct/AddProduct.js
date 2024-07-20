@@ -38,7 +38,7 @@ const AddProduct = () => {
   };
 
   const generateKSKU = (category) => {
-    const letter = category.slice(0, 3).toUpperCase();
+    const letter = category.slice(0,3).toUpperCase();
     const number = Date.now();
     const sku = letter + "-" + number;
     return sku;
