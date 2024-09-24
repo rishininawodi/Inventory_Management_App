@@ -8,7 +8,7 @@ import "./Profile.scss";
 import { toast } from "react-toastify";
 import { updateUser } from "../../services/authService";
 import ChangePassword from "../../components/changePassword/ChangePassword";
-
+import axios from "axios";
 const EditProfile = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -44,47 +44,52 @@ const EditProfile = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      // Handle Image upload
       let imageURL;
-      if (
-        profileImage &&
-        (profileImage.type === "image/jpeg" ||
-          profileImage.type === "image/jpg" ||
-          profileImage.type === "image/png")
-      ) {
-        const image = new FormData();
-        image.append("file", profileImage);
-        image.append("cloud_name", "zinotrust");
-        image.append("upload_preset", "wk66xdkq");
-
-        // First save image to cloudinary
-        const response = await fetch(
-          "https://api.cloudinary.com/v1_1/zinotrust/image/upload",
-          { method: "post", body: image }
-        );
-        const imgData = await response.json();
-        imageURL = imgData.url.toString();
-
-        // Save Profile
-        const formData = {
-          name: profile.name,
-          phone: profile.phone,
-          bio: profile.bio,
-          photo: profileImage ? imageURL : profile.photo,
-        };
-
-        const data = await updateUser(formData);
-        console.log(data);
-        toast.success("User updated");
-        navigate("/profile");
-        setIsLoading(false);
+      if (profileImage) {
+        const formData = new FormData();
+        formData.append("file", profileImage);
+  
+        const pinataApiKey = "0c4a9e822a29de35d192"; // Replace with your Pinata API key
+        const pinataSecretApiKey = "1414bd8e795482f8e835ce0243eb61a1781f57a60da09b2dcabd975ee98a3554"; // Replace with your Pinata Secret key
+  
+        const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
+          maxBodyLength: "Infinity", // to support large file uploads
+          headers: {
+            "Content-Type": "multipart/form-data",
+            pinata_api_key: pinataApiKey,
+            pinata_secret_api_key: pinataSecretApiKey,
+          },
+        });
+  
+        // Check if the response is successful
+        if (!response || !response.data || !response.data.IpfsHash) {
+          throw new Error("Image upload to Pinata failed.");
+        }
+  
+        // The returned URL will be an IPFS link (gateway)
+        imageURL = `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
       }
+  
+      // Save Profile
+      const formDataProfile = {
+        name: profile.name,
+        phone: profile.phone,
+        bio: profile.bio,
+        photo: profileImage ? imageURL : profile.photo,
+      };
+  
+      const data = await updateUser(formDataProfile);
+      console.log(data);
+      toast.success("User updated");
+      navigate("/profile");
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error during profile update:", error);
       setIsLoading(false);
       toast.error(error.message);
     }
   };
+  
 
   return (
     <div className="profile --my2">
