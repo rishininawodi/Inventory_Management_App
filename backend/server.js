@@ -45,8 +45,7 @@ mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(PORT,() =>{
-            console.log(`sever Running on port ${PORT}
-            `);
+            console.log(`sever Running on port ${PORT}`);
 
         });
 

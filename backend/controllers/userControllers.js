@@ -276,7 +276,7 @@ const forgotPassword = asyncHandler(async(req,res) => {
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-
+    console.log(hashedToken);
 
     //loging to console
     //save token to db
