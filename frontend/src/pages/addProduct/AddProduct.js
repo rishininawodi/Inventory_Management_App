@@ -7,6 +7,7 @@ import {
   createProduct,
   selectIsLoading,
 } from "../../redux/features/product/productSlice";
+import { toast } from "react-toastify";
 
 const initialState = {
   name: "",
@@ -33,12 +34,18 @@ const AddProduct = () => {
   };
 
   const handleImageChange = (e) => {
-    setProductImage(e.target.files[0]);
-    setImagePreview(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    if (file) {
+      console.log("Selected file:", file);
+      setProductImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    } else {
+      console.log("No file selected");
+    }
   };
 
   const generateKSKU = (category) => {
-    const letter = category.slice(0,3).toUpperCase();
+    const letter = category.slice(0, 3).toUpperCase();
     const number = Date.now();
     const sku = letter + "-" + number;
     return sku;
@@ -57,9 +64,13 @@ const AddProduct = () => {
 
     console.log(...formData);
 
-    await dispatch(createProduct(formData));
-
-    navigate("/dashboard");
+    try {
+      await dispatch(createProduct(formData));
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Error creating product:", error);
+      toast.error("Failed to create product.");
+    }
   };
 
   return (

@@ -49,8 +49,8 @@ const EditProfile = () => {
         const formData = new FormData();
         formData.append("file", profileImage);
   
-        const pinataApiKey = "0c4a9e822a29de35d192"; // Replace with your Pinata API key
-        const pinataSecretApiKey = "1414bd8e795482f8e835ce0243eb61a1781f57a60da09b2dcabd975ee98a3554"; // Replace with your Pinata Secret key
+        const pinataApiKey = "a4a84d286431feb3e9c5"; // Replace with your Pinata API key
+        const pinataSecretApiKey = "bc559debd531ff3f7ec5ceb084015ce3c3d918dce3d3f5ab47a5bb1af48a45b2"; // Replace with your Pinata Secret key
   
         const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
           maxBodyLength: "Infinity", // to support large file uploads
