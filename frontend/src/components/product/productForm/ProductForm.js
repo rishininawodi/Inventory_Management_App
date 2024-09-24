@@ -27,15 +27,15 @@ const ProductForm = ({
             <input
               type="file"
               name="image"
-              onChange={(e) => handleImageChange(e)}
+              onChange={handleImageChange}
             />
 
-            {imagePreview != null ? (
+            {imagePreview ? (
               <div className="image-preview">
                 <img src={imagePreview} alt="product" />
               </div>
             ) : (
-              <p>No image set for this poduct.</p>
+              <p>No image set for this product.</p>
             )}
           </Card>
           <label>Product Name:</label>
@@ -58,7 +58,7 @@ const ProductForm = ({
 
           <label>Product Price:</label>
           <input
-            type="text"
+            type="number"
             placeholder="Product Price"
             name="price"
             value={product?.price}
@@ -67,7 +67,7 @@ const ProductForm = ({
 
           <label>Product Quantity:</label>
           <input
-            type="text"
+            type="number"
             placeholder="Product Quantity"
             name="quantity"
             value={product?.quantity}
