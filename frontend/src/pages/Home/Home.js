@@ -1,6 +1,7 @@
 import React from "react";
-import { RiProductHuntLine } from "react-icons/ri";
+// import { RiProductHuntLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.svg";
 import "./Home.scss";
 import heroImg from "../../assets/inv-img.png";
 import { ShowOnLogin, ShowOnLogout } from "../../components/protect/HiddenLink";
@@ -10,7 +11,8 @@ const Home = () => {
     <div className="home">
       <nav className="container --flex-between ">
         <div className="logo">
-          <RiProductHuntLine size={35} />
+        <img src={logo} alt="Logo" width={75} height={75} />
+          {/* <RiProductHuntLine size={50} /> */}
         </div>
 
         <ul className="home-links">
@@ -38,7 +40,7 @@ const Home = () => {
       {/* HERO SECTION */}
       <section className="container hero">
         <div className="hero-text">
-          <h2>Inventory {"&"} Stock Management Solution</h2>
+          <h2>Complete Inventory Tracking Solution</h2>
           <p>
             Inventory system to control and manage proucts in the warehouse in
             real timeand integrated to make it easier to develop your business.
@@ -56,7 +58,7 @@ const Home = () => {
         </div>
 
         <div className="hero-image">
-          <img src={heroImg} alt="Inventory" />
+          <img src={heroImg} alt="Inventory"  height="350px"/>
         </div>
       </section>
     </div>

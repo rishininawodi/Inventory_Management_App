@@ -15,11 +15,19 @@
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
   --color-purple: #9d0191;
+<<<<<<< main
   --color-orange: #b9b1ac;
 
   --color-primary: #ffcc00;
   --color-success: #0c177a;
   --color-danger: rgba(0, 0, 0, 0.963);
+=======
+  --color-orange: #ff8811;
+
+  --color-primary: #007bff;
+  --color-success: #28a745;
+  --color-danger: red;
+>>>>>>> main
 }
 
 * {
@@ -197,7 +205,7 @@ p {
   color: #021427;
 }
 .--color-danger {
-  color: orangered;
+  color: red;
 }
 .--color-success {
   color: #28a745;
@@ -319,7 +327,7 @@ p {
 
 .--btn-primary {
   color: #fff;
-  background: #007bff;
+  background: #7B287D;
 }
 .--btn-secondary {
   color: #fff;
