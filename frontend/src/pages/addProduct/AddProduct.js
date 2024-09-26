@@ -60,7 +60,7 @@ const AddProduct = () => {
     formData.append("quantity", Number(quantity));
     formData.append("price", price);
     formData.append("description", description);
-    formData.append("image", productImage);
+
 
     console.log(...formData);
 
