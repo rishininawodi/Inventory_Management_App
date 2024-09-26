@@ -42,8 +42,7 @@ const Home = () => {
         <div className="hero-text">
           <h2>Complete Inventory Tracking Solution</h2>
           <p>
-            Inventory system to control and manage proucts in the warehouse in
-            real timeand integrated to make it easier to develop your business.
+          An advanced inventory management system designed to efficiently control and manage products in your warehouse in real time. Our integrated solution streamlines operations, enhancing productivity and helping your business grow.
           </p>
           <div className="hero-buttons">
             <button className="--btn --btn-secondary">
@@ -51,9 +50,9 @@ const Home = () => {
             </button>
           </div>
           <div className="--flex-start">
-            <NumberText num="14K" text="Brand Owners" />
-            <NumberText num="23K" text="Active Users" />
-            <NumberText num="500+" text="Partners" />
+            <NumberText num="15K" text="Active Items" /><br/>
+            <NumberText num="25K" text="Satisfied Users" />
+            <NumberText num="600+" text="Trusted Partners" />
           </div>
         </div>
 
